@@ -1,0 +1,31 @@
+
+
+
+.slant-footer {
+    border-left: 100vw solid;
+    @apply border-l-neutral-900;
+    border-top: 150px solid transparent;
+    @apply absolute;
+    top: -150px;
+  }
+
+
+  
+.footer li {
+    margin: 0.5rem 0.2rem;
+  }
+
+  
+#footer ul li a{
+    color: #fff;
+  }
+
+
+  
+@media (min-width: 1024px) {
+ 
+    .slant-footer {
+      border-top-width: 200px;
+      top: -200px;
+    }
+  }

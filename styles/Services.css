@@ -1,0 +1,45 @@
+
+
+.services{
+    @apply px-5  xl:mx-auto 2xl:px-5 ;
+    /* height: 30vh; */
+}
+
+
+
+.slant-service {
+    border-left: 100vw solid;
+      @apply border-l-gray-300;
+      border-top: 150px solid transparent;
+      @apply absolute;
+      top: -149px;
+      z-index: 1;
+  }
+
+  .slant-left-service{
+    border-right: 100vw solid;
+    @apply border-r-gray-300;
+    border-bottom: 150px solid transparent;
+  }
+
+@media (max-width: 480px) {
+    .services .card{    
+        height: 100px;
+        margin: 3;
+    }
+
+    .slant-service {
+        display: none;
+    }  
+    }
+    
+
+    @media (min-width: 481px) and (max-width: 1024px) {
+                
+        .services .card{  
+            padding: 1px;            
+            justify-content: center;
+            align-items: center;
+        }
+
+    }

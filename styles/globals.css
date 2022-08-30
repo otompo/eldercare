@@ -1,0 +1,373 @@
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.text-blue-500{
+  color: #fff !important;
+}
+
+.text-2xl {
+  font-size: 3.5rem !important;
+  line-height: 2rem !important;
+}
+
+@import url("https://fonts.googleapis.com/css2?family=Reem+Kufi:wght@400;700&display=swap");
+
+:root {
+  --blue-card: #12036f;
+  --red-card: #f12711;
+  --yellow-card: #f5af19;
+  --primary-color: #022913;
+  --primary-dark: #f58220;
+  --secondary-color: #e3d002;
+  --secondary-dark: #e3d002;
+  --white-color: #fff;
+  --overlay: rgba(255, 0, 0, 0.903);
+}
+
+::selection,
+::-moz-selection {
+  @apply bg-teal-500 text-white;
+}
+
+::-webkit-scrollbar {
+  @apply w-3;
+}
+
+::-webkit-scrollbar-track {
+  @apply shadow rounded-lg bg-teal-100;
+}
+
+::-webkit-scrollbar-thumb {
+  @apply bg-teal-400 rounded-lg hover:bg-teal-500 transition-all duration-200;
+}
+
+
+
+
+@-webkit-keyframes mymove {
+  0% {
+    background-size: 110% 110%;
+  }
+  100% {
+    background-size: 100% 100%;
+  }
+}
+@keyframes mymove {
+  0% {
+    background-size: 110% 110%;
+  }
+  100% {
+    background-size: 100% 100%;
+  }
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  font-family: "Reem Kufi", sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-size: 18px;
+  @apply bg-teal-50 overflow-x-hidden;
+}
+
+.max-width {
+  @apply px-5 xl:max-w-7xl xl:mx-auto 2xl:px-5;
+} 
+
+.max-width-card {
+  @apply px-5 xl:max-w-7xl xl:mx-auto 2xl:px-5;
+} 
+
+.slant {
+  border-right: 100vw solid #a32727;
+  border-top: 150px solid transparent;
+}
+
+
+.slant-left {
+  border-right: 100vw solid;
+  @apply border-gray-300;
+  border-bottom: 150px solid transparent;
+}
+
+.slant-right-call{
+  border-left: 100vw solid;
+  @apply border-white;
+  border-top: 150px solid transparent;
+  @apply absolute;
+  top: -149px;
+}
+
+.slant-left-call{
+  border-left: 100vw solid #d0d4da;
+  border-top: 150px solid transparent;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  color: #112827;
+}
+
+label {
+  margin-bottom: 0.3rem;
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: #383838;
+}
+
+input,
+textarea {
+  background-color: #fff;
+  padding: 0.5rem;
+  border-radius: 0.2rem;
+  margin-bottom: 2rem;
+  color: #616161;
+  border: 2px solid hsl(217, 91%, 60%, 30%);
+  outline: none;
+  width: 100%;
+}
+
+input:focus,
+textarea:focus {
+  border: 2px solid hsl(217, 91%, 60%);
+}
+
+button {
+  user-select: none;
+}
+a:hover{
+  text-decoration: none !important;
+}
+
+/* 404 Page */
+.page-not-found-wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  min-height: 68vh;
+}
+
+#title_404 {
+  color: #e61e4d !important;
+  font-size: 5rem !important;
+}
+
+#description_404 {
+  color: grey !important;
+}
+
+
+
+.industries-bnr {
+  background-image: linear-gradient(to right, var(--primary-color), #000);
+  /* position: relative; */
+  height: 35vh;
+  background-size: cover;
+  padding-top: 30px;
+}
+
+
+.contact__form input,
+.contact__form textarea,
+.contact__form button {
+  width: calc(100vw - 40px);
+}
+
+.invoice__preview {
+  margin-top: 1.25rem;
+}
+
+.card-top:hover{
+  box-shadow: 0 0 5px rgba(15, 15, 15, 0.26);
+  transform: translateY(-1vmax);
+  transition-timing-function:ease-in;
+  transition-duration: 1s;
+  cursor: pointer;
+}
+
+.card-down:hover{
+  box-shadow: 0 0 5px rgba(15, 15, 15, 0.26);
+  transform: translateY(1vmax);
+  transition-timing-function:ease-in;
+  transition-duration: 1s;
+  cursor: pointer;
+}
+
+.about-mission{
+  border-radius: 100%;
+  width: 150px;
+  height: 115%;
+  justify-content: center;
+  text-align: center;
+  padding: 20px;
+}
+
+.about-vision{
+  border-radius: 100%;
+  width: 150px;
+  height: 115%;
+  justify-content: center;
+  text-align: center;
+  padding: 20px;
+}
+
+.ant-layout-sider-trigger{
+   /* z-index: 1 !important; */
+   height: 10vh !important;
+}
+
+.active {
+  color: #1890ff !important;
+  text-decoration: underline;
+}
+
+.readmore {
+  position: absolute;
+  bottom: -20px;
+  /* margin-left: 35%; */
+  margin-top: 10px;
+  margin-bottom: 22px;
+}
+
+
+.list-group-item {
+   font-size: 16px;
+    color: red;
+}
+
+
+@media (max-width: 480px) {
+  
+.slant {
+  border-right: 100vw solid #99f6e4;
+  border-top: 1px solid transparent;
+}
+
+.slant-left-call{
+  border-left: 100vw solid #d0d4da;
+  border-top: 150px solid transparent;
+}
+
+
+.text-2xl {
+  font-size: 2.5rem !important;
+  line-height: 2rem !important;
+}
+
+.text-2xl {
+  font-size: 2.4rem !important;
+  
+}
+
+.hero-section img{
+    
+  display: none;
+}
+
+.about-mission{
+  border-radius: 100%;
+  width: 140px;
+  height: 60%;
+  justify-content: center;
+  text-align: center;
+  padding: 20px;
+}
+
+.about-vision{
+  border-radius: 100%;
+  width: 140px;
+  height: 100%;
+  justify-content: center;
+  text-align: center;
+  padding: 20px;
+}
+}
+
+
+@media (min-width: 481px) and (max-width: 1024px) {
+ 
+  .about-mission{
+    border-radius: 100%;
+    width: 150px;
+    height: 40%;
+    justify-content: center;
+    text-align: center;
+    padding: 20px;
+  }
+  
+  .about-vision{
+    border-radius: 100%;
+    width: 150px;
+    height: 85%;
+    justify-content: center;
+    text-align: center;
+    padding: 20px;
+  }
+}
+
+@media (min-width: 768px) {
+  .about .overlay {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+  }
+
+  .contact__form input,
+  .contact__form textarea,
+  .contact__form button {
+    width: calc(50vw - 40px);
+  }
+ 
+}
+
+@media (min-width: 1024px) {
+ 
+
+  .home .overlay {
+    height: calc(80vh - 10px);
+  }
+
+  .slant {
+    border-top-width: 200px;
+  }
+
+  .slant-left {
+    border-bottom-width: 200px;
+  }
+
+}
+
+@media (min-width: 1280px) {
+  .invoice__preview {
+    transform: scale(0.8);
+    position: sticky;
+    right: 0;
+    top: 0;
+    margin-top: -6rem;
+    margin-bottom: 2rem;
+  }
+}
+
+
+
+/* ----------- Loading ------------- */
+
+@import url('./Navbar.css');
+@import url('./Services.css');
+@import url('./Testimonials.css');
+@import url('./Map.css');
+@import url('./Hero.css');
+@import url('./Footer.css');

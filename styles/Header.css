@@ -1,0 +1,48 @@
+
+#header{
+    background-color: #00450a;
+    z-index:900;
+  } 
+
+  
+#header #herderactive {
+  background-color: #010001 !important;
+}
+
+.navbar{
+  box-shadow: none !important;
+}
+  
+@media (max-width: 480px) {
+    #header{
+      background-color: rgb(2, 41, 19);
+      height: 100px;
+    }
+    
+  .slant {
+    border-right: 100vw solid #99f6e4;
+    border-top: 1px solid transparent;
+  }
+  .pages-showcase {
+    height: calc(100vh - 20px);
+  }
+  }
+  .card-Style:hover{
+    box-shadow: 0 0 5px rgba(15, 15, 15, 0.26);
+    transform: translateY(-1vmax);
+    transition-timing-function:ease-in;
+    transition-duration: 1s;
+    cursor: pointer;
+  }
+  
+
+  
+
+@media (min-width: 481px) and (max-width: 1024px) {
+  
+    #header{
+      background-color: rgb(2, 41, 19);
+      height: 100px;
+    }
+    
+  }

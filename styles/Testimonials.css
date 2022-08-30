@@ -1,0 +1,13 @@
+
+
+  .slant-testimonial {
+    border-right: 100vw solid;
+    @apply border-l-gray-900;
+    border-top: 150px solid transparent;
+  }
+
+.slant-left-testimonial {
+    border-right: 100vw solid;
+    @apply border-gray-300;
+    border-bottom: 150px solid transparent;
+  }

@@ -1,0 +1,132 @@
+
+
+
+#hero {
+    color: #fff;
+    width: 100%;
+    height: calc(100vh - 20px);
+    position: relative;
+    z-index: 1;
+  }
+  
+  #hero:before {
+    content: '';
+    background-image:linear-gradient(to right, rgba(-50, -70, -80, 0.7), rgba(30, 20, 150, 0.7));
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    
+  }
+  
+  
+  #hero .content {
+    position: absolute;
+    top: 148px;
+    height: auto;
+    width: 100%;
+    padding: 10px;
+   
+  }
+
+  #hero .full-img{
+    width: 100%;
+    height: 100%;
+    overFlow: "hidden";
+    background-size: "cover";
+    
+  }
+
+  #hero .small-img{    
+    width: 100%;
+    height: 100%;
+
+  }
+  .max-width-card {
+    padding-left: 0.25rem !important;
+    margin-left: -5px !important;
+}
+  
+  /* *************************************************************** */
+  .hero-section {
+    background-image:linear-gradient(to right, rgba(-50, -70, -80, 0.7), rgba(30, 20, 150, 0.7)), url(/images/pages.jpeg); 
+    background-position: center center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    padding-bottom: 100px;
+    -webkit-animation: mymove 5s linear infinite alternate;
+    animation: mymove 5s linear infinite alternate;
+    overflow: hidden;
+    height: calc(100vh - 20px);
+  }
+
+
+
+  @media (max-width: 480px) {   
+      #hero .small-img{    
+        display: none;
+      }
+      #hero .content {
+        position: absolute;
+        top: 10px;
+        right: 8px;       
+        justify-content: center;
+        text-align: center;
+        padding: 0;
+      }
+      .text-base{
+        font-size:0.7rem !important
+      }
+      #hero .content .title {
+        font-size: 1rem !important;
+        line-height: 0.8rem;
+      }
+      .max-width-card {
+       
+        margin-left: 30px !important;
+    }
+  }
+
+
+
+@media (min-width: 481px) and (max-width: 1024px) {
+   
+    #hero .small-img{    
+        display: none;
+      }
+
+      #hero .content {
+        position: absolute;
+        top: 2px;
+        right: -3px;       
+}
+  }
+  
+
+@media (min-width:1024px) and (max-width: 1366px) {
+    #hero .small-img{    
+        display: none;
+      }
+      .health {
+        margin-right: -401px;
+    }
+#hero {
+    height: calc(100vh - 40px);
+    z-index: 1;
+  }
+  #hero .content {
+    top: 34px;
+    right: -23px;     
+    
+  }
+  .max-width-card {
+    padding-left: 12.25rem !important;
+    
+}
+      
+  }
+  
+
+ 

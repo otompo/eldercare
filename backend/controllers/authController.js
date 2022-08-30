@@ -210,15 +210,14 @@ export const updateUserProfile = catchAsync(async (req, res, next) => {
   const token = signToken(user);
   res.send({
     token,
-    user,
-    // _id: user._id,
-    // name: user.name,
-    // email: user.email,
-    // role: user.role,
-    // contactNum: user.contactNum,
-    // username: user.username,
-    // active: user.active,
-    // generatedPasword: user.generatedPasword,
+    _id: user._id,
+    name: user.name,
+    email: user.email,
+    role: user.role,
+    contactNum: user.contactNum,
+    username: user.username,
+    active: user.active,
+    generatedPasword: user.generatedPasword,
   });
 });
 

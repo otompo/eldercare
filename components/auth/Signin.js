@@ -15,8 +15,6 @@ function Signin(props) {
   const { user } = state;
   const [loading, setLoading] = useState(false);
 
-  useEffect(() => {}, []);
-
   useEffect(() => {
     if (user && user.role && user.role.includes("admin")) {
       router.push("/admin");

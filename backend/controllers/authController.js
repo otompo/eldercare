@@ -202,6 +202,27 @@ export const readSingleNurse = catchAsync(async (req, res) => {
 });
 
 export const updateUserProfile = catchAsync(async (req, res, next) => {
+  const user = await User.findById(req.user._id).select("+active");
+  user.name = req.body.name;
+  user.email = req.body.email;
+  user.contactNum = req.body.contactNum;
+  await user.save();
+  const token = signToken(user);
+  res.send({
+    token,
+    user,
+    // _id: user._id,
+    // name: user.name,
+    // email: user.email,
+    // role: user.role,
+    // contactNum: user.contactNum,
+    // username: user.username,
+    // active: user.active,
+    // generatedPasword: user.generatedPasword,
+  });
+});
+
+export const updateUserProfiles = catchAsync(async (req, res, next) => {
   const { name, email, contactNum, bio, password } = req.body;
 
   const user = await User.findById(req.user._id).select("+active +password");

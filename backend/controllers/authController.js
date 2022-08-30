@@ -205,6 +205,7 @@ export const updateUserProfile = catchAsync(async (req, res, next) => {
   const user = await User.findById(req.user._id).select("+active");
   user.name = req.body.name;
   user.email = req.body.email;
+  user.bio = req.body.bio;
   user.contactNum = req.body.contactNum;
   await user.save();
   const token = signToken(user);

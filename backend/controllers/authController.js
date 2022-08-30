@@ -214,6 +214,7 @@ export const updateUserProfile = catchAsync(async (req, res, next) => {
     name: user.name,
     email: user.email,
     role: user.role,
+    bio: user.bio,
     contactNum: user.contactNum,
     username: user.username,
     active: user.active,

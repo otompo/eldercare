@@ -196,7 +196,7 @@ function ManageSingleNurse(props) {
               <div className="container">
                 <div className="row">
                   <h2 className="text-uppercase d-inline py-4 px-3">
-                    Legacy Grace Home Healthcare
+                    Elder Care
                   </h2>
                   <div className="col-md-12">
                     <ul>

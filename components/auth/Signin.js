@@ -79,8 +79,8 @@ function Signin(props) {
               className="login-form"
               initialValues={{
                 remember: true,
-                email: "sasco@gmail.com",
-                password: "otompo123@",
+                email: " ",
+                password: "",
               }}
               onFinish={onFinish}
             >

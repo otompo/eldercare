@@ -755,12 +755,12 @@ function ManageSinglePatients(props) {
                   <div className="row">
                     <div className="col">
                       <h2 className="text-uppercase d-inline py-4 px-3">
-                        <Avatar
+                        {/* <Avatar
                           style={{ backgroundColor: "green" }}
                           size={84}
                           src={<Image src="/images/logo.png" preview={false} />}
-                        />{" "}
-                        Legacy Grace Home Healthcare
+                        />{" "} */}
+                        Elder Care
                       </h2>
                     </div>
                   </div>

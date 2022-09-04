@@ -47,8 +47,8 @@ function ManageProfile() {
         name,
         email,
         contactNum,
-        password,
-        bio,
+        // password,
+        // bio,
       });
       dispatch({
         type: "LOGIN",
@@ -130,18 +130,18 @@ function ManageProfile() {
               value={contactNum}
               onChange={(e) => setContactNum(e.target.value)}
             />
-
+            {/* 
             <Input.Password
               style={{ margin: "10px 0px 10px 0px" }}
               size="large"
               placeholder="Password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
-            />
+            /> */}
 
-            <Editor
+            {/* <Editor
               apiKey="nti1dzmlp7xe935k4cysx2rcp0zxrnsva5pc01n76kx1j9xh"
-              // initialValue=""
+              
               init={{
                 height: 400,
                 menubar: true,
@@ -166,7 +166,7 @@ function ManageProfile() {
               onEditorChange={handleBio}
               name="bio"
               value={bio}
-            />
+            /> */}
 
             <Button
               onClick={handleSubmit}

@@ -20,8 +20,7 @@ function ManageSingleDoctor(props) {
 
   const { username } = router.query;
   // context
-  const { state, dispatch } = useContext(AuthContext);
-  const { user } = state;
+
   const [loading, setLoading] = useState(true);
   const [isModalVisible, setIsModalVisible] = useState(false);
   const [name, setName] = useState("");

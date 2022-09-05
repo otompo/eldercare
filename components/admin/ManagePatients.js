@@ -49,8 +49,7 @@ function ManagePatients(props) {
 
   const router = useRouter();
   // context
-  const { state, dispatch } = useContext(AuthContext);
-  const { user } = state;
+
   const [loading, setLoading] = useState(false);
   const [success, setSuccess] = useState(false);
   const [patients, setPatients] = useState([]);

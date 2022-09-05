@@ -18,8 +18,6 @@ const { TabPane } = Tabs;
 const { TextArea } = Input;
 
 function ManageSettings(props) {
-  const { state, dispatch } = useContext(AuthContext);
-  const { user } = state;
   const [loading, setLoading] = useState(true);
   const [success, setSuccess] = useState(false);
   const [imagePreview, setImagePreview] = useState("");

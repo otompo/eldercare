@@ -13,8 +13,7 @@ import { AuthContext } from "../../context/authContext";
 
 function ManageTrashDoctors(props) {
   const router = useRouter();
-  const { state, dispatch } = useContext(AuthContext);
-  const { user } = state;
+
   const [doctors, setDoctors] = useState([]);
   const [total, setTotal] = useState("");
   const [success, setSuccess] = useState(false);

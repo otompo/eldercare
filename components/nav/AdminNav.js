@@ -13,7 +13,6 @@ import {
 } from "@ant-design/icons";
 import { AuthContext } from "../../context/authContext";
 import { useRouter } from "next/router";
-import Cookies from "js-cookie";
 
 const { SubMenu } = Menu;
 const { Sider } = Layout;

@@ -24,8 +24,7 @@ function ManageDoctors(props) {
 
   const router = useRouter();
   // context
-  const { state, dispatch } = useContext(AuthContext);
-  const { user } = state;
+
   const [loading, setLoading] = useState(true);
   const [success, setSuccess] = useState(false);
   const [doctors, setDoctors] = useState([]);

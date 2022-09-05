@@ -20,8 +20,7 @@ function ManageSingleNurse(props) {
 
   const { username } = router.query;
   // context
-  const { state, dispatch } = useContext(AuthContext);
-  const { user } = state;
+
   const [isModalVisible, setIsModalVisible] = useState(false);
   const [name, setName] = useState("");
   const [contactNum, setContactNum] = useState("");

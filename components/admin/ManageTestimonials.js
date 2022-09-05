@@ -19,8 +19,6 @@ function ManageTestimonials(props) {
     loading: false,
   });
 
-  const { state, dispatch } = useContext(AuthContext);
-  const { user } = state;
   const [success, setSuccess] = useState(false);
   const [isModalVisible, setIsModalVisible] = useState(false);
   const [testimonials, setTestimonials] = useState([]);

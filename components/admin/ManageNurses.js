@@ -23,8 +23,6 @@ function ManageNurses(props) {
 
   const router = useRouter();
   // context
-  const { state, dispatch } = useContext(AuthContext);
-  const { user } = state;
 
   const [success, setSuccess] = useState(false);
   const [doctors, setDoctors] = useState([]);

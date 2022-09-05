@@ -23,8 +23,6 @@ function ManageServices(props) {
     loading: false,
   });
 
-  const { state, dispatch } = useContext(AuthContext);
-  const { user } = state;
   const [loading, setLoading] = useState(true);
   const [success, setSuccess] = useState(false);
   const [isModalVisible, setIsModalVisible] = useState(false);

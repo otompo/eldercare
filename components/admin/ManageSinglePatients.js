@@ -36,8 +36,6 @@ function ManageSinglePatients(props) {
 
   const { username } = router.query;
   // context
-  const { state, dispatch } = useContext(AuthContext);
-  const { user } = state;
 
   const [loading, setLoading] = useState(false);
   const [success, setSuccess] = useState(true);

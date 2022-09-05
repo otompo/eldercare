@@ -9,10 +9,7 @@ import AdminLayout from "../layout/AdminLayout";
 import { Editor } from "@tinymce/tinymce-react";
 
 function ManageProfile() {
-  const { state, dispatch } = useContext(AuthContext);
-  const { user } = state;
   const [loading, setLoading] = useState(false);
-
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [contactNum, setContactNum] = useState("");

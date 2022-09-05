@@ -1,20 +1,8 @@
-import { useContext } from "react";
 import Head from "next/head";
-import { AuthContext } from "../../context/authContext";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "antd/dist/antd.css";
 
 const Layout = ({ children, title = "ElderCare" }) => {
-  // useEffect(() => {
-  //   var tawk = new TawkTo(process.env.TAWK_PROPERTY_ID, process.env.TAWK_ID);
-
-  //   https: tawk.onStatusChange((status) => {
-  //     // console.log(status);
-  //   });
-  // }, []);
-  const { state, dispatch } = useContext(AuthContext);
-  const { user } = state;
-
   return (
     <div>
       <Head>

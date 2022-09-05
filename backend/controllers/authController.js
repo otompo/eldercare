@@ -69,6 +69,7 @@ export const signup = catchAsync(async (req, res, next) => {
 });
 
 export const signin = catchAsync(async (req, res, next) => {
+  // console.log("CURRENT INSTRUCTOR => ", req.body);
   const user = await User.findOne({
     email: req.body.email,
     active: { $ne: false },

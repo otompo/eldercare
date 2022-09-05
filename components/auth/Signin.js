@@ -1,5 +1,5 @@
 import React, { useContext, useState, useEffect } from "react";
-import { Form, Input, Button, Card, Col, Row } from "antd";
+import { Form, Input, Button, Card, Col, Row, Spin } from "antd";
 import axios from "axios";
 import { toast } from "react-hot-toast";
 import { LockOutlined, MailOutlined } from "@ant-design/icons";
@@ -11,21 +11,23 @@ import LoadingToRedirect from "../LoadingToRedirect";
 
 function Signin(props) {
   const router = useRouter();
-  const { state, dispatch } = useContext(AuthContext);
-  const { user } = state;
+  const [auth, setAuth] = useContext(AuthContext);
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
 
-  useEffect(() => {
-    if (user && user.role && user.role.includes("admin")) {
-      router.push("/admin");
-    } else if (user && user.role && user.role.includes("doctor")) {
-      router.push("/doctor");
-    } else if (user && user.role && user.role.includes("nurse")) {
-      router.push("/nurse");
-    }
-  }, [user]);
+  // useEffect(() => {
+  //   if (user && user.role && user.role.includes("admin")) {
+  //     router.push("/admin");
+  //   } else if (user && user.role && user.role.includes("doctor")) {
+  //     router.push("/doctor");
+  //   } else if (user && user.role && user.role.includes("nurse")) {
+  //     router.push("/nurse");
+  //   }
+  // }, [user]);
 
   const onFinish = async (values) => {
+    // console.log("values => ", values);
     try {
       setLoading(true);
       const { data } = await axios.post("/api/auth/signin", values);
@@ -33,36 +35,66 @@ function Signin(props) {
         toast.error(data.error);
         setLoading(false);
       } else {
+        // console.log("signin response => ", data);
         // save user and token to context
+        setAuth(data);
         // save user and token to local storage
-        dispatch({
-          type: "LOGIN",
-          payload: data,
-        });
-        // save in local storage
-        Cookies.set("user", data);
-        // console.log(data);
+        localStorage.setItem("auth", JSON.stringify(data));
+        toast.success("Successfully signed in");
         // redirect user
         if (data && data.user && data.user.role.includes("admin")) {
           router.push("/admin");
-          toast.success("success");
+          // toast.success("success");
         } else {
-          dispatch({ type: "LOGOUT" });
-          Cookies.remove("user");
           router.push("/");
         }
+        // form.resetFields();
       }
-      setLoading(false);
     } catch (err) {
-      console.log(err.response.data.message);
-      toast.error(err.response.data.message);
+      console.log(err);
       setLoading(false);
+      // toast.error("Signin failed. Try again.");
     }
   };
 
-  if (user) {
-    return <LoadingToRedirect />;
-  }
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    try {
+      setLoading(true);
+      const { data } = await axios.post("/api/auth/signin", {
+        email,
+        password,
+      });
+      if (data?.error) {
+        toast.error(data.error);
+        setLoading(false);
+      } else {
+        // console.log("signin response => ", data);
+        // save user and token to context
+        setAuth(data);
+        // save user and token to local storage
+        localStorage.setItem("auth", JSON.stringify(data));
+        toast.success("Successfully signed in");
+        // redirect user
+        if (data && data.user && data.user.role.includes("admin")) {
+          router.push("/admin");
+          // toast.success("success");
+        } else {
+          router.push("/");
+        }
+        // form.resetFields();
+      }
+    } catch (err) {
+      console.log(err);
+      setLoading(false);
+      // toast.error("Signin failed. Try again.");
+    }
+  };
+
+  // if (user) {
+  //   return <LoadingToRedirect />;
+  // }
 
   return (
     <Layout title="Signin">
@@ -74,53 +106,33 @@ function Signin(props) {
         >
           {/* <h1 style={{ paddingTop: "100px" }}>Signin</h1> */}
           <Card>
-            <Form
-              name="normal_login"
-              className="login-form"
-              initialValues={{
-                remember: true,
-                email: " ",
-                password: "",
-              }}
-              onFinish={onFinish}
-            >
-              {/* email */}
-              <Form.Item
-                name="email"
-                rules={[
-                  { required: true, message: "Please email is require!" },
-                ]}
-              >
-                <Input
-                  prefix={<MailOutlined className="site-form-item-icon" />}
-                  placeholder="Email"
-                />
-              </Form.Item>
-              {/* password */}
-              <Form.Item
-                name="password"
-                rules={[
-                  { required: true, message: "Please input your Password!" },
-                ]}
-              >
-                <Input.Password
-                  prefix={<LockOutlined className="site-form-item-icon" />}
-                  type="password"
-                  placeholder="Password"
-                />
-              </Form.Item>
-              <Form.Item>
-                <Button
-                  type="primary"
-                  htmlType="submit"
-                  className="login-form-button"
-                  loading={loading}
-                  block
+            <form onSubmit={handleSubmit}>
+              <input
+                type="email"
+                className="form-control mb-4 p-2"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                placeholder="Enter email"
+                required
+              />
+              <input
+                type="password"
+                className="form-control mb-4 p-2"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                placeholder="Enter password"
+                required
+              />
+              <div className="d-grid gap-2">
+                <button
+                  disabled={!email || !password || loading}
+                  className="btn btn-primary btn-block"
+                  type="submit"
                 >
-                  Login
-                </Button>
-              </Form.Item>
-            </Form>
+                  {loading ? <Spin /> : "Login"}
+                </button>
+              </div>
+            </form>
           </Card>
         </Col>
       </Row>

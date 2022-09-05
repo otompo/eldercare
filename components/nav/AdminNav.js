@@ -21,8 +21,7 @@ const { Sider } = Layout;
 const AdminNav = () => {
   const router = useRouter();
   // context
-  const { state, dispatch } = useContext(AuthContext);
-  // const { user } = state;
+  const [auth, setAuth] = useContext(AuthContext);
 
   // state
   const [collapsed, setCollapsed] = useState(false);
@@ -44,9 +43,15 @@ const AdminNav = () => {
 
   const activeName = (name) => `${current === name && "active"}`;
 
-  const handleLogout = async () => {
-    dispatch({ type: "LOGOUT" });
-    Cookies.remove("user");
+  const handleLogout = () => {
+    // remove from local storage
+    localStorage.removeItem("auth");
+    // remove from context
+    setAuth({
+      user: null,
+      token: "",
+    });
+    // redirect to login
     router.push("/");
   };
 

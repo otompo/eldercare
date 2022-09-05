@@ -1,40 +1,32 @@
-import { useReducer, createContext } from "react";
-import Cookies from "js-cookie";
+import { useState, useEffect, createContext } from "react";
 import axios from "axios";
-// initial state
-const initialState = {
-  user: Cookies.get("user") ? JSON.parse(Cookies.get("user")) : null,
-  userInfor: null,
-};
 
-// create context
-export const AuthContext = createContext();
+const AuthContext = createContext();
 
-// root reducer
-const rootReducer = (state, action) => {
-  switch (action.type) {
-    case "LOGIN":
-      return { ...state, user: action.payload };
-    case "LOGOUT":
-      return { ...state, user: null };
-    default:
-      return state;
-  }
-};
-
-// context provider
-export const AuthProvider = ({ children }) => {
-  const [state, dispatch] = useReducer(rootReducer, initialState);
+const AuthProvider = ({ children }) => {
+  const [auth, setAuth] = useState({
+    user: null,
+    token: "",
+  });
 
   // config axios
-  const token = state && state.user && state.user.token ? state.user.token : "";
-  //   configure axios
-  // console.log("token", token);
-  axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
+  if (process.server) {
+    axios.defaults.headers.common["Authorization"] = `Bearer ${auth?.token}`;
+  } else {
+    axios.defaults.headers.common["Authorization"] = `Bearer ${auth?.token}`;
+  }
+
+  useEffect(() => {
+    if (localStorage.getItem("auth")) {
+      setAuth(JSON.parse(localStorage.getItem("auth")));
+    }
+  }, []);
 
   return (
-    <AuthContext.Provider value={{ state, dispatch }}>
+    <AuthContext.Provider value={[auth, setAuth]}>
       {children}
     </AuthContext.Provider>
   );
 };
+
+export { AuthContext, AuthProvider };

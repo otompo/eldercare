@@ -1,14 +1,14 @@
 import React, { useContext, useEffect, useState } from "react";
-import Layout from "../layout/Layout";
-import axios from "axios";
 import { Avatar, Button, Col, Input, Row } from "antd";
 import { AuthContext } from "../../context/authContext";
-import Cookies from "js-cookie";
-import toast from "react-hot-toast";
 import AdminLayout from "../layout/AdminLayout";
+import Layout from "../layout/Layout";
+import toast from "react-hot-toast";
+import axios from "axios";
 import { Editor } from "@tinymce/tinymce-react";
 
 function ManageProfile() {
+  const [auth, setAuth] = useContext(AuthContext);
   const [loading, setLoading] = useState(false);
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
@@ -47,17 +47,17 @@ function ManageProfile() {
         // password,
         // bio,
       });
-      dispatch({
-        type: "LOGIN",
-        payload: data,
-      });
-      Cookies.set("user", data);
-      // setValues({ ...values, loading: false });
+      if (auth?.user?._id === data._id) {
+        setAuth({ ...auth, user: data });
+        let fromLocalStorage = JSON.parse(localStorage.getItem("auth"));
+        fromLocalStorage.user = data;
+        localStorage.setItem("auth", JSON.stringify(fromLocalStorage));
+      }
+
       toast.success("Success");
       setLoading(false);
     } catch (err) {
       toast.error(err.response.data.message);
-      // setValues({ ...values, loading: false });
       setLoading(false);
     }
   };

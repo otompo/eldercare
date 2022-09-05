@@ -103,6 +103,7 @@ export const currentAdmin = catchAsync(async (req, res, next) => {
     res.json({ ok: true });
   }
 });
+
 export const currentDoctor = catchAsync(async (req, res, next) => {
   let user = await User.findById(req.user._id).select("-password");
   // console.log("CURRENT INSTRUCTOR => ", user);

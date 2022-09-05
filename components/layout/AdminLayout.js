@@ -10,29 +10,27 @@ const { Content } = Layout;
 
 function AdminLayout({ children }) {
   const router = useRouter();
-  // context
-  // const { state, dispatch } = useContext(AuthContext);
-  // const { user } = state;
-  // const [ok, setOk] = useState(false);
+  const [auth, setAuth] = useContext(AuthContext);
+  // state
+  const [loading, setLoading] = useState(true);
 
-  // useEffect(() => {
-  //   if (user?.token) getCurrentAdmin();
-  // }, [user?.token]);
+  useEffect(() => {
+    if (auth?.token) getCurrentAdmin();
+  }, [auth?.token]);
 
-  // const getCurrentAdmin = async () => {
-  //   try {
-  //     const { data } = await axios.get("/api/admin/current");
-  //     if (data.ok) setOk(true);
-  //   } catch (err) {
-  //     console.log(err);
-  //     router.push("/");
-  //     setOk(false);
-  //   }
-  // };
+  const getCurrentAdmin = async () => {
+    try {
+      const { data } = await axios.get("/api/admin/current");
+      setLoading(false);
+    } catch (err) {
+      console.log(err);
+      router.push("/");
+    }
+  };
 
-  // if (!user || !ok) {
-  //   return <LoadingToRedirect />;
-  // }
+  if (loading) {
+    return <LoadingToRedirect />;
+  }
 
   return (
     <Layout>

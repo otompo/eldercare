@@ -26,36 +26,11 @@ function Signin(props) {
   //   }
   // }, [user]);
 
-  const onFinish = async (values) => {
-    // console.log("values => ", values);
-    try {
-      setLoading(true);
-      const { data } = await axios.post("/api/auth/signin", values);
-      if (data?.error) {
-        toast.error(data.error);
-        setLoading(false);
-      } else {
-        // console.log("signin response => ", data);
-        // save user and token to context
-        setAuth(data);
-        // save user and token to local storage
-        localStorage.setItem("auth", JSON.stringify(data));
-        toast.success("Successfully signed in");
-        // redirect user
-        if (data && data.user && data.user.role.includes("admin")) {
-          router.push("/admin");
-          // toast.success("success");
-        } else {
-          router.push("/");
-        }
-        // form.resetFields();
-      }
-    } catch (err) {
-      console.log(err);
-      setLoading(false);
-      // toast.error("Signin failed. Try again.");
+  useEffect(() => {
+    if (auth?.token) {
+      router.push("/admin");
     }
-  };
+  }, [auth]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -75,7 +50,7 @@ function Signin(props) {
         setAuth(data);
         // save user and token to local storage
         localStorage.setItem("auth", JSON.stringify(data));
-        toast.success("Successfully signed in");
+        toast.success("Success");
         // redirect user
         if (data && data.user && data.user.role.includes("admin")) {
           router.push("/admin");
@@ -88,13 +63,13 @@ function Signin(props) {
     } catch (err) {
       console.log(err);
       setLoading(false);
-      // toast.error("Signin failed. Try again.");
+      toast.error(err.response.data.message);
     }
   };
 
-  // if (user) {
-  //   return <LoadingToRedirect />;
-  // }
+  if (auth?.token) {
+    return <LoadingToRedirect />;
+  }
 
   return (
     <Layout title="Signin">

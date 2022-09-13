@@ -44,12 +44,25 @@ const patientSchema = new Schema(
       trim: true,
     },
 
-    region: {
+    postCode: {
       type: String,
       trim: true,
     },
 
-    homeTown: {
+    country: {
+      type: String,
+      trim: true,
+    },
+
+    county: {
+      type: String,
+      trim: true,
+    },
+    niNumber: {
+      type: String,
+      trim: true,
+    },
+    city: {
       type: String,
       trim: true,
     },

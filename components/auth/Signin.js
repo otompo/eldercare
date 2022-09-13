@@ -1,13 +1,11 @@
 import React, { useContext, useState, useEffect } from "react";
-import { Form, Input, Button, Card, Col, Row, Spin } from "antd";
-import axios from "axios";
+import { Card, Col, Row, Spin } from "antd";
 import { toast } from "react-hot-toast";
-import { LockOutlined, MailOutlined } from "@ant-design/icons";
-import Layout from "../layout/Layout";
-import Cookies from "js-cookie";
 import { useRouter } from "next/router";
 import { AuthContext } from "../../context/authContext";
 import LoadingToRedirect from "../LoadingToRedirect";
+import Layout from "../layout/Layout";
+import axios from "axios";
 
 function Signin(props) {
   const router = useRouter();

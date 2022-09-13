@@ -108,7 +108,11 @@ function ManageStaff(props) {
       setSuccess(false);
     } catch (err) {
       console.log(err.response);
-      // toast.error(err.response);
+      toast.error(err.response.data.message);
+      setValues({
+        ...values,
+        loading: false,
+      });
       setSuccess(false);
     }
   };

@@ -25,8 +25,11 @@ function ManagePatients(props) {
     email: "",
     contactNum: "",
     address: "",
-    region: "",
-    homeTown: "",
+    city: "",
+    postCode: "",
+    country: "",
+    county: "",
+    niNumber: "",
     efullName: "",
     relationship: "",
     cellPhone: "",
@@ -35,7 +38,7 @@ function ManagePatients(props) {
     insuranceContact: "",
     policyNumber: "",
     groupNumber: "",
-    socialSecurityNumber: "",
+    niNumber: "",
     organization: "",
     primarycarephysician: "",
     bodyTemperature: "",
@@ -122,6 +125,7 @@ function ManagePatients(props) {
       console.log(err);
     }
   };
+
   const loadSymptoms = async () => {
     try {
       const { data } = await axios.get(`/api/admin/symptoms`);
@@ -130,6 +134,7 @@ function ManagePatients(props) {
       console.log(err);
     }
   };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
@@ -140,8 +145,8 @@ function ManagePatients(props) {
         // email: "",
         // contactNum: "",
         // address: "",
-        // region: "",
-        // homeTown: "",
+        // city: "",
+        // postCode: "",
         // efullName: "",
         // relationship: "",
         // cellPhone: "",
@@ -150,7 +155,7 @@ function ManagePatients(props) {
         // insuranceContact: "",
         // policyNumber: "",
         // groupNumber: "",
-        // socialSecurityNumber: "",
+        // niNumber: "",
         // organization: "",
         // primarycarephysician: "",
         // bodyTemperature: "",
@@ -183,8 +188,8 @@ function ManagePatients(props) {
       //   email: "",
       //   contactNum: "",
       //   address: "",
-      //   region: "",
-      //   homeTown: "",
+      //   city: "",
+      //   postCode: "",
       //   efullName: "",
       //   relationship: "",
       //   cellPhone: "",
@@ -193,7 +198,7 @@ function ManagePatients(props) {
       //   insuranceContact: "",
       //   policyNumber: "",
       //   groupNumber: "",
-      //   socialSecurityNumber: "",
+      //   niNumber: "",
       //   organization: "",
       //   primarycarephysician: "",
       //   loading: false,
@@ -214,8 +219,8 @@ function ManagePatients(props) {
         // email: "",
         // contactNum: "",
         // address: "",
-        // region: "",
-        // homeTown: "",
+        // city: "",
+        // postCode: "",
         // efullName: "",
         // relationship: "",
         // cellPhone: "",
@@ -224,7 +229,7 @@ function ManagePatients(props) {
         // insuranceContact: "",
         // policyNumber: "",
         // groupNumber: "",
-        // socialSecurityNumber: "",
+        // niNumber: "",
         // organization: "",
         // primarycarephysician: "",
         // bodyTemperature: "",
@@ -522,8 +527,8 @@ function ManagePatients(props) {
                   <div className="form-group">
                     <input
                       type="text"
-                      name="region"
-                      value={values.region}
+                      name="city"
+                      value={values.city}
                       onChange={handleChange}
                       className="form-control mb-4 p-2"
                       placeholder="Enter city"
@@ -535,17 +540,41 @@ function ManagePatients(props) {
                   <div className="form-group">
                     <input
                       type="text"
-                      name="homeTown"
-                      value={values.homeTown}
+                      name="postCode"
+                      value={values.postCode}
                       onChange={handleChange}
                       className="form-control mb-4 p-2"
-                      placeholder="Enter home town"
+                      placeholder="Enter post code..."
                       required
                     />
                   </div>
                 </div>
               </div>
               <div className="row">
+                <div className="col">
+                  <div className="form-group">
+                    <input
+                      type="text"
+                      name="country"
+                      value={values.country}
+                      onChange={handleChange}
+                      className="form-control mb-4 p-2"
+                      placeholder="Enter country"
+                    />
+                  </div>
+                </div>
+                <div className="col">
+                  <div className="form-group">
+                    <input
+                      type="text"
+                      name="county"
+                      value={values.county}
+                      onChange={handleChange}
+                      className="form-control mb-4 p-2"
+                      placeholder="Enter county"
+                    />
+                  </div>
+                </div>
                 <div className="col">
                   <div className="form-group">
                     <input
@@ -610,81 +639,18 @@ function ManagePatients(props) {
             </fieldset>
 
             <fieldset className="border p-2">
-              <legend className="float-none w-auto p-2">
-                Insurance Information
-              </legend>
+              <legend className="float-none w-auto p-2">NI Number</legend>
+
               <div className="row">
                 <div className="col">
                   <div className="form-group">
                     <input
                       type="text"
-                      name="insuranceCarrier"
-                      value={values.insuranceCarrier}
+                      name="niNumber"
+                      value={values.niNumber}
                       onChange={handleChange}
                       className="form-control mb-4 p-2"
-                      placeholder="Enter  insurance carrier"
-                    />
-                  </div>
-                </div>
-                <div className="col">
-                  <div className="form-group">
-                    <input
-                      type="text"
-                      name="insurancePlan"
-                      value={values.insurancePlan}
-                      onChange={handleChange}
-                      className="form-control mb-4 p-2"
-                      placeholder="Enter insurance plan"
-                    />
-                  </div>
-                </div>
-                <div className="col">
-                  <div className="form-group">
-                    <input
-                      type="text"
-                      name="insuranceContact"
-                      value={values.insuranceContact}
-                      onChange={handleChange}
-                      className="form-control mb-4 p-2"
-                      placeholder="Enter contact number"
-                    />
-                  </div>
-                </div>
-              </div>
-              <div className="row">
-                <div className="col">
-                  <div className="form-group">
-                    <input
-                      type="text"
-                      name="policyNumber"
-                      value={values.policyNumber}
-                      onChange={handleChange}
-                      className="form-control mb-4 p-2"
-                      placeholder="Enter  policy number"
-                    />
-                  </div>
-                </div>
-                <div className="col">
-                  <div className="form-group">
-                    <input
-                      type="text"
-                      name="groupNumber"
-                      value={values.groupNumber}
-                      onChange={handleChange}
-                      className="form-control mb-4 p-2"
-                      placeholder="Enter group number"
-                    />
-                  </div>
-                </div>
-                <div className="col">
-                  <div className="form-group">
-                    <input
-                      type="text"
-                      name="socialSecurityNumber"
-                      value={values.socialSecurityNumber}
-                      onChange={handleChange}
-                      className="form-control mb-4 p-2"
-                      placeholder="Enter social security number"
+                      placeholder="Enter NI Number..."
                     />
                   </div>
                 </div>

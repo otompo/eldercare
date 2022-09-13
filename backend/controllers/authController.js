@@ -87,7 +87,7 @@ export const signin = catchAsync(async (req, res, next) => {
 
 export const currentUser = async (req, res) => {
   try {
-    // const user = await User.findById(req.user._id).select("-password").exec();
+    const user = await User.findById(req.user._id).select("-password").exec();
     return res.json({ ok: true });
   } catch (err) {
     console.log(err);
@@ -339,7 +339,11 @@ export const addUser = catchAsync(async (req, res, next) => {
   const { name, email, contactNum, role } = req.body;
   // console.log(req.body);
   let userExist = await User.findOne({ email }).exec();
+  let userExistNumber = await User.findOne({ contactNum }).exec();
   if (userExist) return next(new AppError("Email is taken", 404));
+  if (userExistNumber)
+    return next(new AppError("Contact Number is taken", 404));
+
   let password = nanoid(10).toLowerCase();
   const user = await new User({
     name: name,

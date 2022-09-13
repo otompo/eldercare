@@ -39,7 +39,7 @@ function ManageSinglePatients(props) {
 
   const [loading, setLoading] = useState(false);
   const [success, setSuccess] = useState(true);
-  // const [ok, setOk] = useState(false);
+
   const [createdAt, setCreatedAt] = useState("");
   const [patient, setPatient] = useState("");
   const [isModalVisible, setIsModalVisible] = useState(false);
@@ -48,21 +48,20 @@ function ManageSinglePatients(props) {
   const [relationship, setRelationship] = useState("");
   const [organization, setOrganization] = useState("");
   const [cellPhone, setCellPhone] = useState("");
+  const [postCode, setPostCode] = useState("");
+  const [niNumber, setNINumber] = useState("");
   const [lastName, setLastName] = useState("");
   const [contactNum, setContactNum] = useState("");
-  const [homeTown, setHomeTown] = useState("");
-  const [region, setRegion] = useState("");
+  const [city, setCity] = useState("");
+  const [country, setCountry] = useState("");
+  const [county, setCounty] = useState("");
   const [address, setAddress] = useState("");
   const [image, setImage] = useState("");
   const [email, setEmail] = useState("");
   const [primarycarephysician, setPrimaryCarePhysician] = useState("");
-
   var preData = moment(predateofbirth).format("MMM Do Y");
-
   const [dateofbirth, setDateofBirth] = useState(Date(preData).toDateString);
-
   const [predateofbirth, setPreDateofBirth] = useState("");
-
   const [comments, setComments] = useState([]);
   const [actionTriggered, setActionTriggered] = useState("");
   const [imagePreview, setImagePreview] = useState("");
@@ -129,7 +128,6 @@ function ManageSinglePatients(props) {
     e.preventDefault();
     try {
       setSuccess(true);
-      // setOk(true);
       const { data } = await axios.put(
         `/api/admin/patients/update/${username}`,
         {
@@ -141,9 +139,12 @@ function ManageSinglePatients(props) {
           nurse: nurses,
           symptoms: symptoms,
           contactNum,
-          region,
           address,
-          homeTown,
+          city,
+          postCode,
+          country,
+          county,
+          niNumber,
           efullName,
           relationship,
           cellPhone,
@@ -173,11 +174,9 @@ function ManageSinglePatients(props) {
       setIsModalVisible(false);
       setSuccess(false);
       router.push(`/admin/patients`);
-      // setOk(false);
     } catch (err) {
       console.log(err.response.data.message);
       setSuccess(false);
-      // setOk(false);
     }
   };
 
@@ -197,7 +196,8 @@ function ManageSinglePatients(props) {
       setPreCheck(data.patient.check);
       setCellPhone(data.patient.cellPhone);
       setEmail(data.patient.email);
-      setHomeTown(data.patient.homeTown);
+      setCity(data.patient.city);
+      setCounty(data.patient.county);
       setMaritalStatus(data.patient.maritalstatus);
       setPreMaritalStatus(data.patient.maritalstatus);
       setImage(data.patient.image.url);
@@ -206,10 +206,12 @@ function ManageSinglePatients(props) {
       setPreDoctors(data.patient.doctor);
       setPreSymptoms(data.patient.symptoms);
       setPreNurses(data.patient.nurse);
+      setPostCode(data.patient.postCode);
+      setNINumber(data.patient.niNumber);
       setGender(data.patient.gender);
       setPreGender(data.patient.gender);
       setContactNum(data.patient.contactNum);
-      setRegion(data.patient.region);
+      setCountry(data.patient.country);
       setAddress(data.patient.address);
       setInsuranceCarrier(data.patient.insuranceCarrier);
       setInsurancePlan(data.patient.insurancePlan);
@@ -369,16 +371,28 @@ function ManageSinglePatients(props) {
                         <span className="lead"> {contactNum} </span>
                       </h6>{" "}
                       <h6>
-                        Region:
-                        <span className="lead"> {region} </span>
+                        Country:
+                        <span className="lead"> {country} </span>
                       </h6>{" "}
                       <h6>
-                        Home Town:
-                        <span className="lead"> {homeTown} </span>
+                        Post Code:
+                        <span className="lead"> {postCode} </span>
+                      </h6>{" "}
+                      <h6>
+                        County:
+                        <span className="lead"> {county} </span>
+                      </h6>{" "}
+                      <h6>
+                        City:
+                        <span className="lead"> {city} </span>
                       </h6>{" "}
                       <h6>
                         Address:
                         <span className="lead"> {address} </span>
+                      </h6>{" "}
+                      <h6>
+                        NI Number:
+                        <span className="lead"> {niNumber} </span>
                       </h6>{" "}
                       <h6>
                         Email:
@@ -817,12 +831,24 @@ function ManageSinglePatients(props) {
                             ))}{" "}
                         </span>
                         <h6>
-                          Region:
-                          <span className="lead"> {region} </span>
+                          Country:
+                          <span className="lead"> {country} </span>
                         </h6>{" "}
                         <h6>
-                          Home Town:
-                          <span className="lead"> {homeTown} </span>
+                          City:
+                          <span className="lead"> {city} </span>
+                        </h6>{" "}
+                        <h6>
+                          Post Code:
+                          <span className="lead"> {postCode} </span>
+                        </h6>{" "}
+                        <h6>
+                          County:
+                          <span className="lead"> {county} </span>
+                        </h6>{" "}
+                        <h6>
+                          NI Number:
+                          <span className="lead"> {niNumber} </span>
                         </h6>{" "}
                         <h6>
                           Address:
@@ -1251,11 +1277,11 @@ function ManageSinglePatients(props) {
                     <div className="form-group">
                       <input
                         type="text"
-                        name="region"
-                        value={region}
-                        onChange={(e) => setRegion(e.target.value)}
+                        name="country"
+                        value={country}
+                        onChange={(e) => setCountry(e.target.value)}
                         className="form-control mb-4 p-2"
-                        placeholder="Enter region"
+                        placeholder="Enter country"
                         required
                       />
                     </div>
@@ -1264,17 +1290,41 @@ function ManageSinglePatients(props) {
                     <div className="form-group">
                       <input
                         type="text"
-                        name="homeTown"
-                        value={homeTown}
-                        onChange={(e) => setHomeTown(e.target.value)}
+                        name="city"
+                        value={city}
+                        onChange={(e) => setCity(e.target.value)}
                         className="form-control mb-4 p-2"
-                        placeholder="Enter home town"
+                        placeholder="Enter city"
                         required
                       />
                     </div>
                   </div>
                 </div>
                 <div className="row">
+                  <div className="col">
+                    <div className="form-group">
+                      <input
+                        type="text"
+                        name="country"
+                        value={postCode}
+                        onChange={(e) => setPostCode(e.target.value)}
+                        className="form-control mb-4 p-2"
+                        placeholder="Enter post code"
+                      />
+                    </div>
+                  </div>
+                  <div className="col">
+                    <div className="form-group">
+                      <input
+                        type="text"
+                        name="county"
+                        value={county}
+                        onChange={(e) => setCounty(e.target.value)}
+                        className="form-control mb-4 p-2"
+                        placeholder="Enter county"
+                      />
+                    </div>
+                  </div>
                   <div className="col">
                     <div className="form-group">
                       <input
